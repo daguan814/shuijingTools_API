@@ -5,10 +5,13 @@ Description:
 """
 from tortoise.models import Model
 from tortoise import fields
+
+
 class File(Model):
-    fileid = fields.IntField(pk=True, description='上传文件的id,四位数字')
-    username = fields.CharField(max_length=40, description='上传用户的名字')
-    filename = fields.CharField(max_length=50, description='文件名,id加原始文件名')
+    file_id = fields.IntField(pk=True, description='文件id')
+    file_name = fields.CharField(max_length=50,  description='文件名')
     upload_time = fields.DatetimeField(auto_now_add=True, description='上传时间')
     download_time = fields.DatetimeField(auto_now=True, description='最后一次下载的时间')
     download_count = fields.IntField(default=0, description='下载次数')
+    file_type = fields.CharField(max_length=20, description='文件类型,安装包或者压缩包')
+    file_size = fields.CharField(max_length=20, description='文件大小,以MB为单位')
